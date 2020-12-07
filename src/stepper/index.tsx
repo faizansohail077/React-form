@@ -28,12 +28,29 @@ function getSteps() {
   ];
 }
 
-function getStepContent(stepIndex: any, setStep: any,formValue:any,setFormValue:any) {
+function getStepContent(
+  stepIndex: any,
+  setStep: any,
+  formValue: any,
+  setFormValue: any
+) {
   switch (stepIndex) {
     case 0:
-      return <Signup submit={setStep} setFormValue={formValue} />;
+      return (
+        <Signup
+          submit={setStep}
+          value={formValue}
+          setFormValues={setFormValue}
+        />
+      );
     case 1:
-      return <Payment submit={setStep} setFormValue={formValue} />;
+      return (
+        <Payment
+          submit={setStep}
+          value={formValue}
+          setFormValues={setFormValue}
+        />
+      );
     case 2:
       return <Review submit={setStep} value={formValue} />;
     default:
@@ -44,7 +61,7 @@ function getStepContent(stepIndex: any, setStep: any,formValue:any,setFormValue:
 export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [formValue,setFormValue] = React.useState({})
+  const [formValue, setFormValue] = React.useState({});
   const steps = getSteps();
 
   return (
@@ -56,7 +73,7 @@ export default function HorizontalLabelPositionBelowStepper() {
           </Step>
         ))}
       </Stepper>
-      {getStepContent(activeStep, setActiveStep,formValue,setFormValue)}
+      {getStepContent(activeStep, setActiveStep, formValue, setFormValue)}
     </div>
   );
 }

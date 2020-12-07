@@ -10,8 +10,7 @@ interface signup {
   Address: string;
 }
 
-
-const initialValues: signup = {
+const initialValues1: signup = {
   firstName: "",
   lastName: "",
   email: "",
@@ -19,10 +18,10 @@ const initialValues: signup = {
   Address: "",
 };
 
-function Signup({submit}:any) {
+function Signup({ submit, setFormValues, value }: any) {
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ initialValues1, value }}
       validationSchema={Yup.object({
         firstName: Yup.string()
           .required("Required FirstName")
@@ -38,7 +37,8 @@ function Signup({submit}:any) {
       })}
       onSubmit={(values) => {
         console.log(values);
-        submit(1)
+        submit(1);
+        setFormValues({ ...values, ...value });
       }}
     >
       <Form>

@@ -8,10 +8,10 @@ interface payment {
 }
 const initialValues: payment = { cardName: "", cardNumber: 0 };
 
-function Payment({ submit }: any) {
+function Payment({ submit ,setFormValues,value}: any) {
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={value}
       validationSchema={Yup.object({
         cardName: Yup.string().required("Must Provide Card Name"),
         cardNumber: Yup.number().min(1, "Must Provide card Number"),
@@ -19,6 +19,7 @@ function Payment({ submit }: any) {
       onSubmit={(values) => {
         console.log(values);
         submit(2);
+        setFormValues({...values,...value})
       }}
     >
       <Form>
