@@ -1,15 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Signup from '../Signup';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Signup from "../Signup";
+import Payment from "../Payment";
+import Review from "../Review";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -21,28 +21,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    "Select master blaster campaign settings",
+    "Create an ad group",
+    "Create an ad",
+  ];
 }
 
-function getStepContent(stepIndex: any) {
+function getStepContent(stepIndex: any, setStep: any,formValue:any,setFormValue:any) {
   switch (stepIndex) {
     case 0:
-      return <Signup/>;
+      return <Signup submit={setStep} setFormValue={formValue} />;
     case 1:
-      return 'What is an ad group anyways?';
+      return <Payment submit={setStep} setFormValue={formValue} />;
     case 2:
-      return 'This is the bit I really care about!';
+      return <Review submit={setStep} value={formValue} />;
     default:
-      return 'Unknown stepIndex';
+      return "Unknown stepIndex";
   }
 }
 
 export default function HorizontalLabelPositionBelowStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [formValue,setFormValue] = React.useState({})
   const steps = getSteps();
 
- 
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
@@ -52,9 +56,7 @@ export default function HorizontalLabelPositionBelowStepper() {
           </Step>
         ))}
       </Stepper>
-      {
-        getStepContent(activeStep)
-      }
-     </div>
+      {getStepContent(activeStep, setActiveStep,formValue,setFormValue)}
+    </div>
   );
 }
