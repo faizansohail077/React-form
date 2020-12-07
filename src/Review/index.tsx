@@ -1,18 +1,19 @@
+import { colors } from "@material-ui/core";
 import React from "react";
 
 function Review({ submit, value }: any) {
   return (
-    <div>
-      <p>FirstName : {value.firstName} </p>
-      <p>LastName: {value.lastName} </p>
-      <p>Email: {value.email}</p>
-      <p>Contact: {value.contact}</p>
-      <p>Address: {value.Address}</p>
-      <p>CardName: {value.cardName}</p>
-      <p>CardNumber: {value.cardNumber}</p>
+    <div className="form">
+      <p style={{color:'white'}}>FirstName : {value.firstName} </p>
+      <p style={{color:'white'}}>LastName: {value.lastName} </p>
+      <p style={{color:'white'}}>Email: {value.email}</p>
+      <p style={{color:'white'}}>Contact: {value.contact}</p>
+      <p style={{color:'white'}}>Address: {value.Address}</p>
+      <p style={{color:'white'}}>CardName: {value.cardName}</p>
+      <p style={{color:'white'}}>CardNumber: {value.cardNumber}</p>
 
-      <button onClick={() => submit(1)}>Back</button>
-      <button onClick={() => alert("Thanks you for Buying")}>Submit</button>
+      <button className='btn' type="button" onClick={() => submit(1)}>Back</button>
+      <button className='btn' type="submit" onClick={() => alert("Thanks you for Buying")}>Submit</button>
     </div>
   );
 }

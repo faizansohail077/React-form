@@ -2,11 +2,11 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-interface payment {
-  cardName: string;
-  cardNumber: number;
-}
-const initialValues: payment = { cardName: "", cardNumber: 0 };
+// interface payment {
+//   cardName: string;
+//   cardNumber: number;
+// }
+// const initialValues1: payment = { cardName: "", cardNumber: 0 };
 
 function Payment({ submit ,setFormValues,value}: any) {
   return (
@@ -19,22 +19,24 @@ function Payment({ submit ,setFormValues,value}: any) {
       onSubmit={(values) => {
         console.log(values);
         submit(2);
-        setFormValues({...values,...value})
+        setFormValues({...value,...values})
       }}
     >
       <Form>
+        <div className="form">
         <div>
-          <label htmlFor="cardName">CardName : </label>
-          <Field type="text" name="cardName" />
+          <label htmlFor="cardName" className="form__label">CardName : </label>
+          <Field type="text" className="form__input" name="cardName" />
           <ErrorMessage name="cardName" />
         </div>
         <div>
-          <label htmlFor="cardNumber">cardNumber : </label>
-          <Field type="text" name="cardNumber" />
+          <label htmlFor="cardNumber" className="form__label">cardNumber : </label>
+          <Field type="text" className="form__input" name="cardNumber" />
           <ErrorMessage name="cardNumber" />
         </div>
-        <button>submit</button>
-        <button onClick={() => submit(0)}>back</button>
+        <button className='btn'>submit</button>
+          <button  className='btn' type="submit" onClick={() => submit(0)}>back</button>
+          </div>
       </Form>
     </Formik>
   );
