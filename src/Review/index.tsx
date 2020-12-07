@@ -1,4 +1,3 @@
-import { colors } from "@material-ui/core";
 import React from "react";
 
 function Review({ submit, value }: any) {
